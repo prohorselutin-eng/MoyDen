@@ -1,3 +1,4 @@
+
 name: Build Android APK
 
 on:
@@ -25,8 +26,9 @@ jobs:
           java-version: '17'
 
       - uses: android-actions/setup-android@v3
-        with:
-          accept-android-sdk-licenses: true
+
+      - name: Accept Android SDK licenses
+        run: yes | sdkmanager --licenses
 
       - uses: gradle/actions/setup-gradle@v4
         with:
@@ -39,3 +41,4 @@ jobs:
         with:
           name: MoyDen-APK
           path: app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
